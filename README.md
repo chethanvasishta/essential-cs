@@ -3,7 +3,20 @@ TODO: Add a description
 
 # Basic Programming
 
-1. 
+## Build and Launch
+
+1. When you build a helloworld program in C++, what are the steps in converting the helloworld.cpp into a helloworld.exe?
+2. What are the parts of an helloworld executable?
+3. When you launch the helloworld.exe, what all happens?
+4. Let's say the program creates an array using malloc(). Who wrote the malloc implementation?
+    a. Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
+5. Describe how a system call works
+
+Rough: Context switching, sending pointers across processes, threads, 
+
+### Exercises:
+
+
 
 ## Memory Management (OS)
 
@@ -24,7 +37,8 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
 ### Intermediate
 
 1. What's a kernel address space and a user address space? Why is this needed?
-2. Where are the page tables stored?
+2. What are page tables? Why do you need them?
+3. Where are the page tables stored?
 
 Rough: TLB, Shootdown, Context Switch, ASID?
 
