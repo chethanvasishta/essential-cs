@@ -25,34 +25,31 @@ int main(int argc, char* argv[])
 }
 ```
 2. What are the parts of an helloworld executable?
-    a. Where is the main() function located? Similarly, where is foo() located on the executable?
-    b. Where is malloc() located?
+    - Where is the main() function located? Similarly, where is foo() located on the executable?
+    - Where is malloc() located?
 3. When you launch the helloworld.exe, what all happens?
-    a. Who calls the main() function?
-    b. How many threads are created when this program launches?
-    c. Where are these threads located in the memory? Are they part of any heap?
-    d. Is a heap created on program launch?
-    e. Where is the code for main() and foo() located in the memory? Can a program accidentally overwrite this memory location?
+    - Who calls the main() function?
+    - How many threads are created when this program launches?
+    - Where are these threads located in the memory? Are they part of any heap?
+    - Is a heap created on program launch?
+    - Where is the code for main() and foo() located in the memory? Can a program accidentally overwrite this memory location?
 4. [Libraries] Suppose an application has a a set of dependent DLLs?
-    a. When are these DLLs loaded?
-    b. Are all the dependent DLLs loaded in the beginning of the program? Is it configurable?
+    - When are these DLLs loaded?
+    - Are all the dependent DLLs loaded in the beginning of the program? Is it configurable?
 5. [Function Calls] How does the main() function send a and b to foo()?
-    a. Are the a and b in the foo() located in the same space as main's a and b?
-    b. If yes, does changing a in foo() change the a in main too? If not, how are these variables located?
-    c. When is the space for a and b in foo() created and destroyed?
-    d. [Stack Frames] Who creates the stack frame foo()? Who destroys it?
-    e. Can you describe the stack frame structure for the main() calling foo()? What all does it contain?
+    - Are the a and b in the foo() located in the same space as main's a and b?
+    - If yes, does changing a in foo() change the a in main too? If not, how are these variables located?
+    - When is the space for a and b in foo() created and destroyed?
+    - [Stack Frames] Who creates the stack frame foo()? Who destroys it?
+    - Can you describe the stack frame structure for the main() calling foo()? What all does it contain?
 6. [Recursion] Can you describe the stack frame for main() calling foo() calling foo()?
-    a. Are a and b of foo shared across recursion calls?
-    b. Can any function recursively call itself?
-    c. Is there a limit to the depth of recusion? If yes, what defines it?
-    
-    
-9. [System Call] Let's say the program creates an array using malloc(). Who wrote the malloc implementation?    
-    a. Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
-    b. Let's say there's a system call falloc(). Is making a system call same as calling foo()? If not, what's the difference?
-   
-10. Describe how a system call works
+    - Are a and b of foo shared across recursion calls?
+    - Can any function recursively call itself?
+    - Is there a limit to the depth of recusion? If yes, what defines it?
+7. [System Call] Let's say the program creates an array using malloc(). Who wrote the malloc implementation?    
+    - Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
+    - Let's say there's a system call falloc(). Is making a system call same as calling foo()? If not, what's the difference?  
+    - Describe how a system call works.
 
 Rough: Context switching, sending pointers across processes, threads, 
 
