@@ -1,16 +1,58 @@
 # Essential Computer Science
-TODO: Add a description
+
+The following is a list of questions aimed to test the understanding of basics of computer science required for every day application development. The questions are tagged with relevant topics that will provide answers. Some questions might seem absurd to someone who understand the fundamentals of the area, but it's designed to force the developers to test their understanding of the fundamentals
 
 # Basic Programming
 
 ## Build and Launch
 
-1. When you build a helloworld program in C++, what are the steps in converting the helloworld.cpp into a helloworld.exe?
+1. When you build a helloworld program (see below) in C++, what are the steps in converting the helloworld.cpp into a helloworld.exe?
+```c++
+int foo(int a, int b)
+{
+    int c = a + b;
+    a++;
+    b++;
+    return c;
+}
+int main(int argc, char* argv[])
+{
+    int a = 10, b=12;
+    int c = foo(a, b);
+    std::cout << a << " + " << b << " = " c << std::endl;
+    int *p = malloc(10); // allocate 10 bytes
+    return 0;
+}
+```
 2. What are the parts of an helloworld executable?
+    a. Where is the main() function located? Similarly, where is foo() located on the executable?
+    b. Where is malloc() located?
 3. When you launch the helloworld.exe, what all happens?
-4. Let's say the program creates an array using malloc(). Who wrote the malloc implementation?
+    a. Who calls the main() function?
+    b. How many threads are created when this program launches?
+    c. Where are these threads located in the memory? Are they part of any heap?
+    d. Is a heap created on program launch?
+    e. Where is the code for main() and foo() located in the memory? Can a program accidentally overwrite this memory location?
+4. [Libraries] Suppose an application has a a set of dependent DLLs?
+    a. When are these DLLs loaded?
+    b. Are all the dependent DLLs loaded in the beginning of the program? Is it configurable?
+5. [Function Calls] How does the main() function send a and b to foo()?
+    a. Are the a and b in the foo() located in the same space as main's a and b?
+    b. If yes, does changing a in foo() change the a in main too? If not, how are these variables located?
+    c. When is the space for a and b in foo() created and destroyed?
+    d. [Stack Frames] Who creates the stack frame foo()? Who destroys it?
+    e. Can you describe the stack frame structure for the main() calling foo()? What all does it contain?
+6. [Recursion] Can you describe the stack frame for main() calling foo() calling foo()?
+    a. Are a and b of foo shared across recursion calls?
+    b. Can any function recursively call itself?
+    c. Is there a limit to the depth of recusion? If yes, what defines it?
+    
+    
+9. [System Call] Let's say the program creates an array using malloc(). Who wrote the malloc implementation?    
     a. Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
-5. Describe how a system call works
+    b. Let's say there's a system call falloc(). Is making a system call same as calling foo()? If not, what's the difference?
+   
+10. Describe how a system call works
 
 Rough: Context switching, sending pointers across processes, threads, 
 
