@@ -50,7 +50,8 @@ int main(int argc, char* argv[])
         - If not, who prevents it? What's the mechanism to prevent it?
     - Where exactly is the thread stack located in memory?
     - Is there a limit to the number of threads that can be created by a process?
-    - Is there a limit to the number of stack frames that can be created for a thread? 
+    - Is there a limit to the number of stack frames that can be created for a thread?
+    - [Bonus] Can main access/read the variable c in foo() after foo() is over? Note: It's not as straightforward as you think!
 7. [Recursion] Can you describe the stack frame for main() calling foo() calling foo()?
     - Are a and b of foo shared across recursion calls?
     - Can any function recursively call itself?
@@ -77,7 +78,18 @@ int main(int argc, char* argv[])
     - Exercise:
         - [Basic] Fix memory leaks in TODO program        
         - [Intermediate] Write your memory allocator
-11. [Crash]
+11. [Stack vs. Heap]
+    - Where are a and b allocated? Where is the allocation pointed by p allocated?
+    - What's the scope and lifetime of a and b inside main? Similarly, a, b and c inside foo()? What's the scope of
+12. [Initialization order]
+    - TODO: Globals, singletons, etc.     
+13. [Crash]
+    - What does it mean for a program to crash?
+    - What happens after a program crashes? What happens to the state of the threads, heaps, loaded DLLs, etc. on program crash?
+        - If the above program crashes because of some reason after the malloc() call completes (p is assigned), will the system lose the memory allocated for p?
+        - Do the threads apart from the crashed thread continue to run after the crash?
+    - Enumerate the reasons why a program could crash. Are all crashes irrecoverable?
+    - Can a program crash, crash the entire system?
 
 ### Multiple-Processes
 
@@ -139,4 +151,9 @@ Rough: TLB, Shootdown, Context Switch, ASID?
 
 # C++
 
-1. 
+
+---
+
+Rough Topics:
+
+static vs dynamic lib, load vs link time, val vs. ref passing, c++ ref, lvalue and rvalue, c++ constr and destr, virtual functions, vtables, pointer artihmetic, vectors across DLL boundaries, interop,
