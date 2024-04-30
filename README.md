@@ -148,11 +148,23 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
    - Does virtualization help reduce the implications of limited RAM? [Swap space]
 2. [Fragmentation] What is memory fragmentation?
     - How does virtualization help with fragmentation?
-    - 
-
-1. What's a kernel address space and a user address space? Why is this needed?
-2. What are page tables? Why do you need them?
-3. Where are the page tables stored?
+3. [Address Space] What's an address space?
+    - What's the size of address space for a 32-bit process? 64-bit process?
+    - Is the address space of a process contiguous?
+    - Is the address space private to a process?     
+    - What's a kernel address space and a user address space? Why is this needed?
+        - What gets allocated in the kernel space vs. user space?
+        - When can a process access user space? When can it access kernel space?    
+    - What's the difference between virtual address and a physical address?
+    - Can a process ever issue loads/stores to a physical address?
+4. [Implementation]
+    - How is a virtual address converted to a physical address?
+    - What are page tables? Why do you need them?
+        - Can you brief the pros and cons of major page table implementations - radix, inverted?
+    - Where are the page tables stored?
+        - Is it part of the user space?
+        - Can a process ever access a page table directly?
+        - What are the hardware support mechanisms for speeding up page table walks?
 4. Reserved vs. committed memory
 5. swap space
 
