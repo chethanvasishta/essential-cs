@@ -1,6 +1,6 @@
 # Essential Computer Science
 
-The following is a list of questions aimed to test the understanding of basics of computer science required for every day application development. The questions are tagged with relevant topics that will provide answers. Some questions might seem absurd to someone who understand the fundamentals of the area, but it's designed to force the developers to test their understanding of the fundamentals
+The following is a list of questions aimed to test the understanding of basics of computer science required for every day application development. The questions are tagged with relevant topics that will provide answers. Some questions might seem absurd to someone who understands the fundamentals of the area, but it's designed to force the developers to test their understanding of the fundamentals.
 
 # Basic Programming
 
@@ -43,6 +43,7 @@ int main(int argc, char* argv[])
     - Are the a and b in the foo() located in the same space as main's a and b?
     - If yes, does changing a in foo() change the a in main too? If not, how are these variables located?
     - When is the space for a and b in foo() created and destroyed?
+    - Recommended Concepts: Calling Conventions
 6. [Stack Frames] Who creates the stack frame foo()? Who destroys it?
     - Can you describe the stack frame structure for the main() calling foo()? What all does it contain?
     - Can you intentionally overwrite any arbitrary address location inside a thread stack?
@@ -63,6 +64,20 @@ int main(int argc, char* argv[])
     - Helloworld.exe - 32-bit MSVC-14, dep.dll 64-bit MSVC-14? If that works, how? If not, why not?
     - Is there a run a program compiled for Intel x86 processor on a AMD processor? What about ARM processors?
         - Can a program compiled for a Intel x86 processor run on any Intel x86 processor?
+10. [Heaps]
+    - When malloc() allocates a new memory allocation, say 100 bytes, is a new heap created always?
+    - If not, is an existing heap reused? Can two allocations share a heap? If so, who does the bookkeeping?
+    - Can multiple heaps exist inside a process?
+    - When an allocation is freed, what happens inside the heap?
+    - new vs. malloc
+        - What the difference between new and malloc
+        - Can you call free on a memory allocation created by the new operator
+        - Can there be multiple malloc() in the same program? If yes, can a free() deallocate memory created by either of the malloc()
+        - What happens if you free a pointer twice?
+    - Exercise:
+        - [Basic] Fix memory leaks in TODO program        
+        - [Intermediate] Write your memory allocator
+11. [Crash]
 
 ### Multiple-Processes
 
@@ -80,9 +95,15 @@ int main(int argc, char* argv[])
     - What happens during a context switch?
     - If a process was running on core 0 is switched out and scheduled on core 1, what happens to the data it had on core 0? Will it cause any functional issues?
 5. What's the difference between threads and processes?
-    - When would you create threads vs. processes?     
+    - When would you create threads vs. processes?
+    - What's shared and not shared across threads of the same process?
+    - What's shared and not shared across multiple processes?
 
 ### Exercises:
+
+### Recommended Reading
+
+
 
 
 
