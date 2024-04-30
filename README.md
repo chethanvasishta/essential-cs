@@ -6,6 +6,8 @@ The following is a list of questions aimed to test the understanding of basics o
 
 ## Build and Launch
 
+### Single Process
+
 1. When you build a helloworld program (see below) in C++, what are the steps in converting the helloworld.cpp into a helloworld.exe?
 ```c++
 int foo(int a, int b)
@@ -21,6 +23,7 @@ int main(int argc, char* argv[])
     int c = foo(a, b);
     std::cout << a << " + " << b << " = " c << std::endl;
     int *p = malloc(10); // allocate 10 bytes
+    p[0] = 42;
     return 0;
 }
 ```
@@ -42,6 +45,8 @@ int main(int argc, char* argv[])
     - When is the space for a and b in foo() created and destroyed?
     - [Stack Frames] Who creates the stack frame foo()? Who destroys it?
     - Can you describe the stack frame structure for the main() calling foo()? What all does it contain?
+    - Can you intentionally overwrite any arbitrary address location inside a thread stack?
+        - If not, who prevents it? What's the mechanism to prevent it?
 6. [Recursion] Can you describe the stack frame for main() calling foo() calling foo()?
     - Are a and b of foo shared across recursion calls?
     - Can any function recursively call itself?
@@ -50,6 +55,23 @@ int main(int argc, char* argv[])
     - Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
     - Let's say there's a system call falloc(). Is making a system call same as calling foo()? If not, what's the difference?  
     - Describe how a system call works.
+8. Can you call a DLL compiled with a different compiler? For e.g. helloworld.exe compiled with MSVC-14 that wants to use a function bar() in dep.dll compiled with Intel C++ compiler? Other scenarios:
+    - Helloworld.exe -MSVC-14, dep.dll - MSVC-19?
+    - Helloworld.exe - 32-bit MSVC-14, dep.dll 64-bit MSVC-14? If that works, how? If not, why not?    
+
+### Multiple-Processes
+
+1. Can you launch multiple instances of an application in a system simultaneously? If  yes,
+    - What gets shared between the instances?
+    - How many copies of the dependent DLLs are in memory?
+    - In the above example, can another instance dereference the pointer p and read p[0]? Can another instance write to that?
+2. If two different applications running simultaneously refer to a same DLL, are there two copies of the DLL in memory? If no,
+    - What happens to the state inside the DLL? Is it accessible across processes?
+    - If there's a function bar() inside the DLL, can it be called by both processes simultaneously? What happens if bar() modifies a global state inside a DLL?
+    - Exercise: Create the above scenario, attach a debugger like Visual Studio and see what gets loaded and shared?
+3. If two programs allocate two 10 MB arrays in RAM, can one access the array of another? If not, who prevents this from happening?
+   - What's the mechanism to prevent one process accessing memory of another process?
+   - 
 
 Rough: Context switching, sending pointers across processes, threads, 
 
