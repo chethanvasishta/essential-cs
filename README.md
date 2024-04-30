@@ -116,12 +116,9 @@ int main(int argc, char* argv[])
 ### Recommended Reading
 
 
+## Memory Management
 
-
-
-## Memory Management (OS)
-
-Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Swap Disk
+Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Swap Space
 
 ### Basics
 
@@ -165,10 +162,23 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
         - Is it part of the user space?
         - Can a process ever access a page table directly?
         - What are the hardware support mechanisms for speeding up page table walks?
-4. Reserved vs. committed memory
-5. swap space
+            - How do these mechanisms work during a process context switch? 
+4. What's the concept of reserved vs. committed memory?
+    - What are page faults?
+    - How does the OS handle page faults?
+    - What are the different reasons a page can fault?
+    - Can you access invalid memory access violation using page fault?      
+5. [Swap Space] What's a swap space?
+    - Why is it needed? Where is it situated?
+    - How does the OS know that a page is in a swap space?
+    - [Windows] What's the working set of a process? Does it show the total memory taken up by a process?
+    - Exercise: Open the SysInternal VMMap and check out the memory allocation of a process?
+        - Allocate a few thousand byte sized allocations and delete them. What part of the memory grows? Does it always shrink after deallocation?
+6. Answer the basic programming questions (single and multi-process) now that you know about virtual memory.
+  
+Sharing DLLs, memory mapping, working set      
 
-Rough: TLB, Shootdown, Context Switch, ASID?
+Rough: TLB, Shootdown, Context Switch, ASID? [Move to architecture]
 
 ## Compile vs. Link
 
