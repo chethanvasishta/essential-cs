@@ -125,21 +125,36 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
 
 ### Basics
 
-1. What happens under the hood when you get an out-of-memory exception?
-2. Can increasing your RAM (orimary memory) overcome the out-of-memory exception?
-3. If I have a 32-bit process, what's the maximum memory I can allocate for the process?
-4. If I have a machine with 1 GB RAM, can I allocate more than 1 GB in the process?
-5. If I allocate a 10 MB array on a typical windows machine, how is the array placed on the primary memory?
+1. [Out of Memory] What happens under the hood when you get an out-of-memory exception?
+    - Can increasing your RAM (primary memory) overcome the out-of-memory exception?
+    - Can killing other processes temporarily help you fix the out-of-memory exception?
+2. If I have a 32-bit process, what's the maximum memory I can allocate for the process?
+    - What's the maximum on a 64-bit process?
+    - Can I allocate an array of 3.5 GB on a 32-bit process? Assuming I haven't allocated anything on this process yet?
+        - If not, why? What's the maximum I can allocate on a Windows machine? What about Linux?    
+3. If I have a machine with 1 GB RAM, can I allocate more than 1 GB in the process?
+4. If I allocate a 10 MB array on a typical windows machine, how is the array placed on the primary memory?
     a. If it is contiguous, what happens when there's enough space in the RAM but no contiguous space for the 10 MB array?
     b. If it is not contiguous, i.e. placed in chunks, how does the system figure out which chunk a memory access like arr[i] should fetch?
-6. 
-   
+5. If I allocate a pointer p with 4 bytes of allocation at location 0x100 of process P1, what's preventing another process P2 from accessing location 0x100 and read the values of P1?
 
 ### Intermediate
+
+#### Virtual Memory, Paging,  Swap Space
+
+1. What is virtualization of memory (virtual memory)?
+   - Why is it necessary to virtualize memory?
+   - How does virtualization help with security of data across processes? Answer question 5 in memory basics above.
+   - Does virtualization help reduce the implications of limited RAM? [Swap space]
+2. [Fragmentation] What is memory fragmentation?
+    - How does virtualization help with fragmentation?
+    - 
 
 1. What's a kernel address space and a user address space? Why is this needed?
 2. What are page tables? Why do you need them?
 3. Where are the page tables stored?
+4. Reserved vs. committed memory
+5. swap space
 
 Rough: TLB, Shootdown, Context Switch, ASID?
 
