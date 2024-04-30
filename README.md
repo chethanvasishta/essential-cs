@@ -43,21 +43,26 @@ int main(int argc, char* argv[])
     - Are the a and b in the foo() located in the same space as main's a and b?
     - If yes, does changing a in foo() change the a in main too? If not, how are these variables located?
     - When is the space for a and b in foo() created and destroyed?
-    - [Stack Frames] Who creates the stack frame foo()? Who destroys it?
+6. [Stack Frames] Who creates the stack frame foo()? Who destroys it?
     - Can you describe the stack frame structure for the main() calling foo()? What all does it contain?
     - Can you intentionally overwrite any arbitrary address location inside a thread stack?
         - If not, who prevents it? What's the mechanism to prevent it?
-6. [Recursion] Can you describe the stack frame for main() calling foo() calling foo()?
+    - Where exactly is the thread stack located in memory?
+    - Is there a limit to the number of threads that can be created by a process?
+    - Is there a limit to the number of stack frames that can be created for a thread? 
+7. [Recursion] Can you describe the stack frame for main() calling foo() calling foo()?
     - Are a and b of foo shared across recursion calls?
     - Can any function recursively call itself?
     - Is there a limit to the depth of recusion? If yes, what defines it?
-7. [System Call] Let's say the program creates an array using malloc(). Who wrote the malloc implementation?    
+8. [System Call] Let's say the program creates an array using malloc(). Who wrote the malloc implementation?    
     - Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
     - Let's say there's a system call falloc(). Is making a system call same as calling foo()? If not, what's the difference?  
     - Describe how a system call works.
-8. Can you call a DLL compiled with a different compiler? For e.g. helloworld.exe compiled with MSVC-14 that wants to use a function bar() in dep.dll compiled with Intel C++ compiler? Other scenarios:
+9. [Compatibility] Can you call a DLL compiled with a different compiler? For e.g. helloworld.exe compiled with MSVC-14 that wants to use a function bar() in dep.dll compiled with Intel C++ compiler? Other scenarios:
     - Helloworld.exe -MSVC-14, dep.dll - MSVC-19?
-    - Helloworld.exe - 32-bit MSVC-14, dep.dll 64-bit MSVC-14? If that works, how? If not, why not?    
+    - Helloworld.exe - 32-bit MSVC-14, dep.dll 64-bit MSVC-14? If that works, how? If not, why not?
+    - Is there a run a program compiled for Intel x86 processor on a AMD processor? What about ARM processors?
+        - Can a program compiled for a Intel x86 processor run on any Intel x86 processor?
 
 ### Multiple-Processes
 
@@ -69,11 +74,13 @@ int main(int argc, char* argv[])
     - What happens to the state inside the DLL? Is it accessible across processes?
     - If there's a function bar() inside the DLL, can it be called by both processes simultaneously? What happens if bar() modifies a global state inside a DLL?
     - Exercise: Create the above scenario, attach a debugger like Visual Studio and see what gets loaded and shared?
-3. If two programs allocate two 10 MB arrays in RAM, can one access the array of another? If not, who prevents this from happening?
+3. [Security] If two programs allocate two 10 MB arrays in RAM, can one access the array of another? If not, who prevents this from happening?
    - What's the mechanism to prevent one process accessing memory of another process?
-   - 
-
-Rough: Context switching, sending pointers across processes, threads, 
+4. [Context-Switching] What is context switching?
+    - What happens during a context switch?
+    - If a process was running on core 0 is switched out and scheduled on core 1, what happens to the data it had on core 0? Will it cause any functional issues?
+5. What's the difference between threads and processes?
+    - When would you create threads vs. processes?     
 
 ### Exercises:
 
