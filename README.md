@@ -182,6 +182,36 @@ Rough: TLB, Shootdown, Context Switch, ASID? [Move to architecture]
 
 ## Compile vs. Link
 
+Consider the following the program split into three components. The main program contains the main() function, that calls a foo() in a static library and bar in a dynamic library. 
+
+```C++
+// main program -- main.cpp
+int foo(int);
+void bar();
+void zee(int y) {
+    foo(y);
+    bar();
+}
+int main(int argc, char *argv[]) {
+    int a = 10;
+    foo(a);
+    bar();
+}
+// -- static library static.lib --
+void foo(int x) {
+    // do something with x
+}
+// -- dynamic library dyn.dll --
+void bar() {
+    // do something
+}
+// Compile the program as g++ -o main.exe main.cpp -lstatic -ldyn
+```
+1. When I compile main.cpp, a main.o object file is produced
+    a. What all does main.o contain?
+    b. What functions does main.o contain? Does it contain foo()? Does it contain bar()?
+   
+
 
 
 
