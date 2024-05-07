@@ -180,14 +180,15 @@ Sharing DLLs, memory mapping, working set
 
 Rough: TLB, Shootdown, Context Switch, ASID? [Move to architecture]
 
-## Compile vs. Link
+## Compile, Link and Load
 
 Consider the following the program split into three components. The main program contains the main() function, that calls a foo() in a static library and bar in a dynamic library. 
 
 ```C++
 // main program -- main.cpp
+#include <iostream>
 int foo(int);
-void bar();
+void bar(a);
 void zee(int y) {
     foo(y);
     bar();
@@ -195,21 +196,49 @@ void zee(int y) {
 int main(int argc, char *argv[]) {
     int a = 10;
     foo(a);
-    bar();
+    bar(a);
+    std::cout << a << std::endl;
 }
 // -- static library static.lib --
 void foo(int x) {
     // do something with x
 }
 // -- dynamic library dyn.dll --
-void bar() {
+void bar(int y) {
     // do something
 }
 // Compile the program as g++ -o main.exe main.cpp -lstatic -ldyn
 ```
 1. When I compile main.cpp, a main.o object file is produced
-    a. What all does main.o contain?
-    b. What functions does main.o contain? Does it contain foo()? Does it contain bar()?
+    - What all does main.o contain?
+    - What functions does main.o contain? Does it contain foo()? Does it contain bar()?
+    - What's the granularity at which the compiler operates? Or what are compilation units?
+    - What are the steps in compiling this program to main.exe
+    - What does the compiler do when it sees a header file include?
+    - Would the compile of main.cpp fail if the static library didn't have the definition of foo()?
+    - How is main() linked to foo()?
+        - Is the parameter passed to foo() the same way a simple function call happens?
+        - How many copies of foo() are there in the main.exe?
+        - How many copies of foo() are there i the main program after it it loaded?
+    - How is main() linked to bar()?
+        - Answer the same questions as foo()
+2. What's the difference between compile and link?
+    - 
+4. What is a static library?
+    - Why would one write a static library?
+    - Are there any disadvantages by using a static library? Think in terms of maintanability, sharing, memory, etc.
+    - What all does a static library contain?
+    - Can you run a static library as a program by itself? If not, what's missing?
+    - Can you see all the static libraries loaded in a program if you attach a debugger?
+    - When a linker sees a static library, can it see all the functions inside a static library?
+    - If there's a global in the static library, 
+5. What is a dynamic library?
+   - Think of the same questions as the static library.
+   - When is a dynamic library loaded in memory? Are there multiple ways to load a dynamic library?
+     
+   
+    
+   
    
 
 
