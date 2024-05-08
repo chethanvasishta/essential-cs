@@ -231,11 +231,22 @@ void bar(int y) {
     - Can you run a static library as a program by itself? If not, what's missing?
     - Can you see all the static libraries loaded in a program if you attach a debugger?
     - When a linker sees a static library, can it see all the functions inside a static library?
-    - If there's a global in the static library, 
+    - Can there be multiple copies of the same static library in a given process?
+        - If there's a global in the static library, will there be copies of the global too?
+        - In the above example, if the static library was present two times in the process, how does main know which foo to call?
+    - Can you link to static libraries compiled by a different compiler?
 5. What is a dynamic library?
    - Think of the same questions as the static library.
    - When is a dynamic library loaded in memory? Are there multiple ways to load a dynamic library?
-     
+   - Can you call any function that's present inside a dynamic library?
+   - Can you modify/rebuild a DLL that's loaded in a running process?
+   - What does the callstack for a call to a dll look like?
+   - Can you call DLLs that are built by a different compiler?
+   - Can a DLL function take a std::string as a parameter? Or for that sake, a bool or a struct? Justify.
+
+Intermediate:
+
+1. Relocation, patching, delay load
    
     
    
