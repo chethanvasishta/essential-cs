@@ -223,8 +223,8 @@ void bar(int y) {
     - How is main() linked to bar()?
         - Answer the same questions as foo()
 2. What's the difference between compile and link?
-    - 
-4. What is a static library?
+    - Can you get a link error and compile error in the same build?
+3. What is a static library?
     - Why would one write a static library?
     - Are there any disadvantages by using a static library? Think in terms of maintanability, sharing, memory, etc.
     - What all does a static library contain?
@@ -235,7 +235,7 @@ void bar(int y) {
         - If there's a global in the static library, will there be copies of the global too?
         - In the above example, if the static library was present two times in the process, how does main know which foo to call?
     - Can you link to static libraries compiled by a different compiler?
-5. What is a dynamic library?
+4. What is a dynamic library?
    - Think of the same questions as the static library.
    - When is a dynamic library loaded in memory? Are there multiple ways to load a dynamic library?
    - Can you call any function that's present inside a dynamic library?
@@ -243,6 +243,11 @@ void bar(int y) {
    - What does the callstack for a call to a dll look like?
    - Can you call DLLs that are built by a different compiler?
    - Can a DLL function take a std::string as a parameter? Or for that sake, a bool or a struct? Justify.
+5. How do distributed builds work?
+    - Does the compile job gets distributed? If yes, how does the compiler on another machine get the header files for this machine?
+    - Does the linker job gets distributed across machines? If yes, how does it work?
+    - Why do you sometimes see an out-of-memory during the link stage of the compilation process?
+6. How does incremental link work?
 
 Intermediate:
 
@@ -259,17 +264,21 @@ Intermediate:
     - If yes, what are the reasons a debugger might be lying about the callstack? 
 7. What are symbol files? How do they work? Is there a difference between the symbol files on MSVC vs. gcc?
     - What are symbol servers? Why do you need to set one up? How do you populate one?
-9. What's a segmentation fault? Why is it called so (reveals a lot of useful history :))
-10. What's a memory corruption? Shouldn't the OS complain about writing to a memory beyond bounds? Do you remember seeing access violation exceptions? Why don't you see these during memory corruptions?
+8. How do you debug memory leaks?
+    - How do you identify that there's a leak?
+    - How do you fix the exact leak? And how do you verify that the leak is fixed?
+9. How do you debug a memory corruption to the code space of the process?
+10. What's a segmentation fault? Why is it called so (reveals a lot of useful history :))
+11. What's a memory corruption? Shouldn't the OS complain about writing to a memory beyond bounds? Do you remember seeing access violation exceptions? Why don't you see these during memory corruptions?
     - How does one find a memory corruption?
-11. What's the difference between release and debug binaries? Can you debug a release binary?
-12. Does copying debug binaries to a clean VM with the product installed work? Why?
-13. When can you say with confidence that an intermittently appearing bug/crash is fixed?
-14. Wha are data breakpoints? How do they work internally?
-15. Can you execute functions in the watch window?
+12. What's the difference between release and debug binaries? Can you debug a release binary?
+13. Does copying debug binaries to a clean VM with the product installed work? Why?
+14. When can you say with confidence that an intermittently appearing bug/crash is fixed?
+15. Wha are data breakpoints? How do they work internally?
+16. Can you execute functions in the watch window?
     - If yes, which thread are they executed? What happens when there's an exception or a crash in the function called by the watch window?
-16. In what situations does staring at the code without blinking reveal the bug?
-17. In what situations does repeatedly running the same experiment without any changes reveal the bug?
+17. In what situations does staring at the code without blinking reveal the bug?
+18. In what situations does repeatedly running the same experiment without any changes reveal the bug?
 
 Bugs to add: access violation, race condition, reinterpret cast to larger storage space pointer, 
 
