@@ -249,12 +249,29 @@ Intermediate:
 1. Relocation, patching, delay load
    
     
-   
-   
+## Debugging
 
+1. For what reasons would a program crash?
+2. How can a debugger see values of the other program? Isn't it a violation of the security?
+3. How do breakpoints work? If you'd like, take a specific example. Like how does a visual studio breakpoint work?
+4. When a breakpoint is hit, we see a call stack. How does the debugger get the callstack?
+5. When can you trust callstacks? Can a callstack ever be corrupted?
+    - If yes, what are the reasons a debugger might be lying about the callstack? 
+7. What are symbol files? How do they work? Is there a difference between the symbol files on MSVC vs. gcc?
+    - What are symbol servers? Why do you need to set one up? How do you populate one?
+9. What's a segmentation fault? Why is it called so (reveals a lot of useful history :))
+10. What's a memory corruption? Shouldn't the OS complain about writing to a memory beyond bounds? Do you remember seeing access violation exceptions? Why don't you see these during memory corruptions?
+    - How does one find a memory corruption?
+11. What's the difference between release and debug binaries? Can you debug a release binary?
+12. Does copying debug binaries to a clean VM with the product installed work? Why?
+13. When can you say with confidence that an intermittently appearing bug/crash is fixed?
+14. Wha are data breakpoints? How do they work internally?
+15. Can you execute functions in the watch window?
+    - If yes, which thread are they executed? What happens when there's an exception or a crash in the function called by the watch window?
+16. In what situations does staring at the code without blinking reveal the bug?
+17. In what situations does repeatedly running the same experiment without any changes reveal the bug?
 
-
-
+Bugs to add: access violation, race condition, reinterpret cast to larger storage space pointer, 
 
 # C++
 
