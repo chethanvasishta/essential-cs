@@ -75,14 +75,16 @@ int main(int argc, char* argv[])
         - Can you call free on a memory allocation created by the new operator
         - Can there be multiple malloc() in the same program? If yes, can a free() deallocate memory created by either of the malloc()
         - What happens if you free a pointer twice?
+        - Can you call delete[] on an allocation created by new? (Not new[])
     - Exercise:
-        - [Basic] Fix memory leaks in TODO program        
+        - [Basic] Fix memory leaks in TODO program
         - [Intermediate] Write your memory allocator
 11. [Stack vs. Heap]
     - Where are a and b allocated? Where is the allocation pointed by p allocated?
     - What's the scope and lifetime of a and b inside main? Similarly, a, b and c inside foo()? What's the scope of
 12. [Initialization order]
-    - TODO: Globals, singletons, etc.     
+    - TODO: Globals, singletons, etc.
+    - Can you rely on the initialization order of globals across files?
 13. [Crash]
     - What does it mean for a program to crash?
     - What happens after a program crashes? What happens to the state of the threads, heaps, loaded DLLs, etc. on program crash?
@@ -175,6 +177,9 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
     - Exercise: Open the SysInternal VMMap and check out the memory allocation of a process?
         - Allocate a few thousand byte sized allocations and delete them. What part of the memory grows? Does it always shrink after deallocation?
 6. Answer the basic programming questions (single and multi-process) now that you know about virtual memory.
+7. What exactly is a memory leak?
+   - Is it a memory leak if you don't delete an allocation when the program is being shutdown?
+   - What happens to the physical pages allocated to the process if the process crashes? 
   
 Sharing DLLs, memory mapping, working set      
 
@@ -281,6 +286,45 @@ Intermediate:
 18. In what situations does repeatedly running the same experiment without any changes reveal the bug?
 
 Bugs to add: access violation, race condition, reinterpret cast to larger storage space pointer, 
+
+## Pointer Arithmetic
+
+1. Is there anything wrong with the code below?
+
+```c++
+
+struct ParamInfo
+{
+    char* name;
+    char* type;
+};
+
+void FillParamInfo(ParamInfo *info)
+{
+    info = new ParamInfo();
+    info->name = "Hello";
+    info->type = "World";
+}
+
+int main()
+{
+    ParamInfo *info = nullptr;
+    FillParamInfo(info);
+    std::cout << info->name << " " << info->type << std::endl;
+    return 0;
+}
+```
+- Trace the code in terms of the following
+  - Where are the pointers info located?
+  - Where does new allocate memory for info, name and type
+  - How is the info passed on the stack
+  - Free?
+  - Where are the "Hello" and "World" strings located?
+    - Can I delete the pointer to the "Hello" string using delete info->name?
+
+2. Different datatype pointer increments
+3. reinterpret_cast a intptr_t pointer to a int32 pointer?
+4. 
 
 # C++
 
