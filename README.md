@@ -92,6 +92,11 @@ int main(int argc, char* argv[])
         - Do the threads apart from the crashed thread continue to run after the crash?
     - Enumerate the reasons why a program could crash. Are all crashes irrecoverable?
     - Can a program crash, crash the entire system?
+14. [Threads]
+    - In a process with 2 threads, how many stacks are created?
+    - Do threads share the virtual address space?
+    - Can a thread access the memory of another thread?
+    - Can a thread access the stack of another thread?
 
 ### Multiple-Processes
 
@@ -282,8 +287,13 @@ Intermediate:
 15. Wha are data breakpoints? How do they work internally?
 16. Can you execute functions in the watch window?
     - If yes, which thread are they executed? What happens when there's an exception or a crash in the function called by the watch window?
-17. In what situations does staring at the code without blinking reveal the bug?
-18. In what situations does repeatedly running the same experiment without any changes reveal the bug?
+17. How does a debugger access another program's memory? For e.g., visual studio debugger when attached to helloworld.
+    - How is this process able to read the variables of the other program? Isn't it security violation?
+    - Also, each variable in the helloworld has a virtual address. How is this translated by the debugger to the helloworld's physical address? Does it access to the program's page tables?
+      - Is the hardware page walker involved in this conversion?
+    - Does the watch window work in the same way?
+18. In what situations does staring at the code without blinking reveal the bug?
+19. In what situations does repeatedly running the same experiment without any changes reveal the bug?
 
 Bugs to add: access violation, race condition, reinterpret cast to larger storage space pointer, 
 
