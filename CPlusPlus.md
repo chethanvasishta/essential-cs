@@ -107,7 +107,7 @@ The following is a list of questions aimed to test the understanding of basics o
 
 1. [CPPCon] Back to Basics: Compiling and Linking (https://www.youtube.com/watch?v=cpkDQaYttR4)
 2. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
-3. 
+3. [CPPCon] Everything you ever wanted to know about DLLs (https://www.youtube.com/watch?v=JPQWQfDhICA)
 
 Rough Book
 
