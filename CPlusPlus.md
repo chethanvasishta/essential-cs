@@ -90,7 +90,7 @@ The following is a list of questions aimed to test the understanding of basics o
       - Can I pass a reference to an object of D to a function that expects a pointer to an object of B or C?
       - 
 
-3. **Object Layout**
+3. **Object Layout** [TODO]
     - **Object Layout**: The layout of an object in memory is defined by the compiler. The layout of an object is determined by the compiler and is not specified by the C++ standard. The layout of an object is compiler dependent.
     - **Object Size**: The size of an object is compiler dependent. The size of an object is determined by the compiler and is not specified by the C++ standard.
     - **Empty Class**: An empty class has a size of 1 byte. An empty class is a class that has no data members.
@@ -103,6 +103,11 @@ The following is a list of questions aimed to test the understanding of basics o
     - **Virtual Pointer**: A virtual pointer is a pointer that points to the virtual table of an object. A virtual pointer is used to implement dynamic dispatch in C++.
     - **RTTI**: Run-time type information (RTTI) is a mechanism that allows the type of an object to be determined at run-time. RTTI is used to implement dynamic_cast and typeid in C++.
 
+# Resources (In the dependency order)
+
+1. [CPPCon] Back to Basics: Compiling and Linking (https://www.youtube.com/watch?v=cpkDQaYttR4)
+2. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
+3. 
 
 Rough Book
 
