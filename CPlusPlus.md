@@ -105,9 +105,16 @@ The following is a list of questions aimed to test the understanding of basics o
 
 # Resources (In the dependency order)
 
-1. [CPPCon] Back to Basics: Compiling and Linking (https://www.youtube.com/watch?v=cpkDQaYttR4)
-2. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
-3. [CPPCon] Everything you ever wanted to know about DLLs (https://www.youtube.com/watch?v=JPQWQfDhICA)
+## Basics
+
+1. Virtual Memory Lecture (https://youtu.be/rXGGSYYYwh8?si=Pi6ez1a-yuHIOjPx)
+2. [CPPCon] Back to Basics: Compiling and Linking (https://www.youtube.com/watch?v=cpkDQaYttR4)
+3. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
+4. [CPPCon] Everything you ever wanted to know about DLLs (https://www.youtube.com/watch?v=JPQWQfDhICA)
+
+## Intermediate
+
+1. [CPPCon] Back to Basics: Move Semantics (https://youtu.be/Bt3zcJZIalk?si=bEIKQJacGpv8R7wf)
 
 Rough Book
 
