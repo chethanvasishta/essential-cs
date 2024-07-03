@@ -3,7 +3,8 @@
 1. Virtual Memory Lecture (https://youtu.be/rXGGSYYYwh8?si=Pi6ez1a-yuHIOjPx)
 2. [CPPCon] Back to Basics: Compiling and Linking (https://www.youtube.com/watch?v=cpkDQaYttR4)
 3. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
-4. 
+4. [CPPCon] Back to Basics: Pointers (https://www.youtube.com/watch?v=0zd8eznWv4k)
+5. 
 
 Additionally, you could the use the below youtube channels to learn the basics 
 
@@ -14,3 +15,8 @@ Additionally, you could the use the below youtube channels to learn the basics
 
 1. [CPPCon] Back to Basics: Move Semantics (https://youtu.be/Bt3zcJZIalk?si=bEIKQJacGpv8R7wf)
 2. [CPPCon] Everything you ever wanted to know about DLLs (https://www.youtube.com/watch?v=JPQWQfDhICA)
+3. [CPPCon] Back to Basics: Lambdas (https://www.youtube.com/watch?v=IgNUBw3vcO4&list=LL)
+
+## Advanced
+
+1. [CPPCon] CppCon 2018: Matt Godbolt “The Bits Between the Bits: How We Get to main()”  (https://www.youtube.com/watch?v=dOfucXtyEsU)
