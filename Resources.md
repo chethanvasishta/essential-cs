@@ -2,9 +2,10 @@
 
 1. Virtual Memory Lecture (https://youtu.be/rXGGSYYYwh8?si=Pi6ez1a-yuHIOjPx)
 2. [CPPCon] Back to Basics: Compiling and Linking (https://www.youtube.com/watch?v=cpkDQaYttR4)
-3. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
-4. [CPPCon] Back to Basics: Pointers (https://www.youtube.com/watch?v=0zd8eznWv4k)
-5. 
+3. [CPPCon] Back to Basics: Object Layout (https://www.youtube.com/watch?v=iLiDezv_Frk)
+4. [CPPCon] Back to Basics: Casting (https://www.youtube.com/watch?v=2h2hdRqRIRk)
+5. [CPPCon] Back to Basics: Pointers (https://www.youtube.com/watch?v=0zd8eznWv4k)
+6. 
 
 Additionally, you could the use the below youtube channels to learn the basics 
 
