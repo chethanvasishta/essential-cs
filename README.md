@@ -97,6 +97,16 @@ int main(int argc, char* argv[])
     - Do threads share the virtual address space?
     - Can a thread access the memory of another thread?
     - Can a thread access the stack of another thread?
+15. [Stack]
+    - Can you write beyond a stack frame?
+16. [Compatibility]
+    - If I build a main.exe in a Windows machine, can I run it on Linux? Why not?
+        - What if the loader was also ported to Linux? Can I run it then?
+            - How are system calls handled in Windows vs Linux?
+17. If I copy-paste main.exe to any other machine with a different Windows OS, would it be able to run?
+    - What if the machines had the same version of OS? 
+        - What if the machines all had x86 architecture? (x86, but different processors)
+18. What happens when I run a 32-bit process on a 64-bit machine?
 
 ### Multiple-Processes
 
@@ -104,6 +114,7 @@ int main(int argc, char* argv[])
     - What gets shared between the instances?
     - How many copies of the dependent DLLs are in memory?
     - In the above example, can another instance dereference the pointer p and read p[0]? Can another instance write to that?
+1. If I run two instances of the same application, how does the loader write the addresses to function calls in each instance? Because they would be sharing the code on RAM.
 2. If two different applications running simultaneously refer to a same DLL, are there two copies of the DLL in memory? If no,
     - What happens to the state inside the DLL? Is it accessible across processes?
     - If there's a function bar() inside the DLL, can it be called by both processes simultaneously? What happens if bar() modifies a global state inside a DLL?
@@ -234,6 +245,7 @@ void bar(int y) {
         - Answer the same questions as foo()
 2. What's the difference between compile and link?
     - Can you get a link error and compile error in the same build?
+1. Do we actually need a linker or is a compiler enough?
 3. What is a static library?
     - Why would one write a static library?
     - Are there any disadvantages by using a static library? Think in terms of maintanability, sharing, memory, etc.
@@ -259,6 +271,18 @@ void bar(int y) {
     - Why do you sometimes see an out-of-memory during the link stage of the compilation process?
 6. How does incremental link work?
 
+[Compiler]
+
+1. What happens if we have multiple forward declarations?
+1. What happens if we have multiple definitions? 
+1. What is the difference/recommendation between #pragma once and #ifndef...#define...#endif header guards?
+
+[Linker]
+
+1. How does a linker resolve function addresses when we have function overloading?
+1. 
+1. 
+
 Intermediate:
 
 1. Relocation, patching, delay load
@@ -268,6 +292,8 @@ Intermediate:
 
 1. For what reasons would a program crash?
 2. How can a debugger see values of the other program? Isn't it a violation of the security?
+1. How exactly does the debugger get this "special privilege" to ask the OS to reveal data pertaining to another process? 
+    - Can I write my own debugger and ask the OS to go read some other process data for me? 
 3. How do breakpoints work? If you'd like, take a specific example. Like how does a visual studio breakpoint work?
 4. When a breakpoint is hit, we see a call stack. How does the debugger get the callstack?
 5. When can you trust callstacks? Can a callstack ever be corrupted?
@@ -294,6 +320,7 @@ Intermediate:
     - Does the watch window work in the same way?
 18. In what situations does staring at the code without blinking reveal the bug?
 19. In what situations does repeatedly running the same experiment without any changes reveal the bug?
+20. What are memory fill patterns?
 
 Bugs to add: access violation, race condition, reinterpret cast to larger storage space pointer, 
 
