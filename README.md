@@ -39,6 +39,11 @@ int main(int argc, char* argv[])
 4. [Libraries] Suppose an application has a a set of dependent DLLs?
     - When are these DLLs loaded?
     - Are all the dependent DLLs loaded in the beginning of the program? Is it configurable?
+    - Where are they loaded in the virtual address space?
+    - Who is responsible for loading the DLLs?
+    - If I allocate memory (through malloc) in one DLL of an EXE, can I deallocate it in another?
+    - If I allocate memory (through valloc or some system call instead of malloc) in one DLL of an EXE, can I deallocate it in another?
+
 5. [Function Calls] How does the main() function send a and b to foo()?
     - Are the a and b in the foo() located in the same space as main's a and b?
     - If yes, does changing a in foo() change the a in main too? If not, how are these variables located?
@@ -57,7 +62,7 @@ int main(int argc, char* argv[])
     - Can any function recursively call itself?
     - Is there a limit to the depth of recusion? If yes, what defines it?
 8. [System Call] Let's say the program creates an array using malloc(). Who wrote the malloc implementation?    
-    - Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do?
+    - Is malloc a system call? If yes, how does the program know how to call it? If no, what does malloc do? How is it implemented?
     - Let's say there's a system call falloc(). Is making a system call same as calling foo()? If not, what's the difference?  
     - Describe how a system call works.
 9. [Compatibility] Can you call a DLL compiled with a different compiler? For e.g. helloworld.exe compiled with MSVC-14 that wants to use a function bar() in dep.dll compiled with Intel C++ compiler? Other scenarios:
@@ -107,7 +112,32 @@ int main(int argc, char* argv[])
     - What if the machines had the same version of OS? 
         - What if the machines all had x86 architecture? (x86, but different processors)
 18. What happens when I run a 32-bit process on a 64-bit machine?
+19. [Exceptions]
+    - If an exception is thrown somewhere in the call stack, how does a function much below the current function frame catch and handle that exception?
+20. [Stack]
+    - What happens in the following code? What does cout print when the called function returns nothing, but the caller expects it to return an int?
 
+        ```
+        // -- Main.cpp --
+
+        int foo(int a, int b);
+
+        int main()
+        {
+            int x = foo(10, 20);
+            cout << x;
+        }
+        
+
+        // -- helper.cpp --
+
+        void foo(int a, int b)
+        {
+
+            // do something with a and b
+            cout << a << b;
+        }
+        ```
 ### Multiple-Processes
 
 1. Can you launch multiple instances of an application in a system simultaneously? If  yes,
@@ -149,9 +179,11 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
         - If not, why? What's the maximum I can allocate on a Windows machine? What about Linux?    
 3. If I have a machine with 1 GB RAM, can I allocate more than 1 GB in the process?
 4. If I allocate a 10 MB array on a typical windows machine, how is the array placed on the primary memory?
-    a. If it is contiguous, what happens when there's enough space in the RAM but no contiguous space for the 10 MB array?
-    b. If it is not contiguous, i.e. placed in chunks, how does the system figure out which chunk a memory access like arr[i] should fetch?
+    - If it is contiguous, what happens when there's enough space in the RAM but no contiguous space for the 10 MB array?
+    - If it is not contiguous, i.e. placed in chunks, how does the system figure out which chunk a memory access like arr[i] should fetch?
+    - Does the physical page have to be contiguous?
 5. If I allocate a pointer p with 4 bytes of allocation at location 0x100 of process P1, what's preventing another process P2 from accessing location 0x100 and read the values of P1?
+6. How does the operating system allocate stack space for a new thread?
 
 ### Intermediate
 
@@ -166,16 +198,19 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
 3. [Address Space] What's an address space?
     - What's the size of address space for a 32-bit process? 64-bit process?
     - Is the address space of a process contiguous?
+    - Does the address space always start from 0?
     - Is the address space private to a process?     
     - What's a kernel address space and a user address space? Why is this needed?
         - What gets allocated in the kernel space vs. user space?
-        - When can a process access user space? When can it access kernel space?    
+        - When can a process access user space? When can it access kernel space?
+        - What is the difference between user mode and kernel mode?
     - What's the difference between virtual address and a physical address?
     - Can a process ever issue loads/stores to a physical address?
 4. [Implementation]
     - How is a virtual address converted to a physical address?
     - What are page tables? Why do you need them?
         - Can you brief the pros and cons of major page table implementations - radix, inverted?
+        - Does each process carry its own page table?
     - Where are the page tables stored?
         - Is it part of the user space?
         - Can a process ever access a page table directly?
@@ -195,7 +230,30 @@ Topics: Virtual Memory, Paging, Address Space, Reserved vs. Committed memory, Sw
 6. Answer the basic programming questions (single and multi-process) now that you know about virtual memory.
 7. What exactly is a memory leak?
    - Is it a memory leak if you don't delete an allocation when the program is being shutdown?
-   - What happens to the physical pages allocated to the process if the process crashes? 
+   - Describe how a memory leak in the heap segment can affect a running process.
+   - What happens to the physical pages allocated to the process if the process crashes?
+8. How can virtual memory contribute to improving the performance of I/O operations?
+1. How is a stack overflow detected?
+    - When we usually write past an allocated memory of data, we are likely to cause memory corruptions, but how is stack overflow specifically detected as opposed to memory corruptions that go undetected?
+9. What mechanisms do operating systems use to prevent stack overflow?
+10. What is the difference between paging and segmenting?
+11. Why can't we access a memory location outside the address space of a process? Who is stopping us from doing so?
+12. What is wrong with the concept of 1-1 memory mapping from virtual memory to physical memory?
+13. How do you split a segment across pages? Or how do you split the process across the virtual address space? Are the pages contiguously allocated in the address space or are they random?
+14. If there's a 1GB virtual page, does this 1GB have to be contiguous in the physical memory?
+15. If an array allocated spans more than a page, would the pages be contiguous in the address space?
+16. What are the types of memory access violations?
+How does the operating system manage segment resizing and dynamic memory allocation within segments?
+17. Can page size and physical frame size be different?
+18. TLB has about 32 entries while page table could have 10^6 entries. How is this ever helpful with this kind of a ratio? 
+    - Same question for cache. The L1 cache holds about 32 KB, while DRAM has 64 GB, how does such a small cache even help with speedup?
+19. What happens to the TLB at context switch?
+    - TLB shootdown
+    - ABID (Address Base Identifier) / ASID (Address Space Identifier)
+20. In what scenarios does a page fault occur?
+21. How is a page fault handled? (For all scenarios in the previous question)
+22. If I allocate more memory in a process, do the number of virtual pages increase or would RAM increase? Or both?
+23. What is the working set memory of a process?
   
 Sharing DLLs, memory mapping, working set      
 
@@ -265,6 +323,9 @@ void bar(int y) {
    - What does the callstack for a call to a dll look like?
    - Can you call DLLs that are built by a different compiler?
    - Can a DLL function take a std::string as a parameter? Or for that sake, a bool or a struct? Justify.
+   - How does the processor get the address of the DLL loaded by a process?
+   - If two or more processes attempt to load the same DLL, what happens?
+   - If a process has loaded about a 100 DLLs, how does it keep track of all of these?
 5. How do distributed builds work?
     - Does the compile job gets distributed? If yes, how does the compiler on another machine get the header files for this machine?
     - Does the linker job gets distributed across machines? If yes, how does it work?
@@ -304,13 +365,13 @@ Intermediate:
     - How do you identify that there's a leak?
     - How do you fix the exact leak? And how do you verify that the leak is fixed?
 9. How do you debug a memory corruption to the code space of the process?
-10. What's a segmentation fault? Why is it called so (reveals a lot of useful history :))
+10. What's a segmentation fault? Who is responsible for checking it? Why is it called so (reveals a lot of useful history :))
 11. What's a memory corruption? Shouldn't the OS complain about writing to a memory beyond bounds? Do you remember seeing access violation exceptions? Why don't you see these during memory corruptions?
     - How does one find a memory corruption?
 12. What's the difference between release and debug binaries? Can you debug a release binary?
 13. Does copying debug binaries to a clean VM with the product installed work? Why?
 14. When can you say with confidence that an intermittently appearing bug/crash is fixed?
-15. Wha are data breakpoints? How do they work internally?
+15. What are data breakpoints? How do they work internally?
 16. Can you execute functions in the watch window?
     - If yes, which thread are they executed? What happens when there's an exception or a crash in the function called by the watch window?
 17. How does a debugger access another program's memory? For e.g., visual studio debugger when attached to helloworld.
