@@ -8,8 +8,6 @@ These are the topics we touched upon during discussions that require extra readi
 
 1. Thread over-subscription
 
-1. [Memory fill patterns](https://stackoverflow.com/questions/127386/what-are-the-debug-memory-fill-patterns-in-visual-studio-c-and-windows)
-
 1. C++ references
 
 1. Move semantics
@@ -58,9 +56,9 @@ These are the topics we touched upon during discussions that require extra readi
 
 1. Related to page fault
 
-	- Swap
-	- Access violation
-	- Committed vs reserved memory
+1. - Swap
+1. - Access violation
+1. - Committed vs reserved memory
 
 1. Data breakpoints
 
@@ -81,7 +79,6 @@ These are the topics we touched upon during discussions that require extra readi
 1. Stack watcher in the C run time
 
 1. Guard bytes
-
 	- Canaries: https://manybutfinite.com/post/epilogues-canaries-buffer-overflows/
 
 1. System calls for virtual_alloc() and valloc()
@@ -95,3 +92,39 @@ These are the topics we touched upon during discussions that require extra readi
 1. [What every programmer should know about memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
 
 1. Stack smashing
+
+1. Symbol files
+
+1. int3
+
+1. PDB checksum
+
+1. Endianness
+
+1. Fast stack walk
+
+1. Precise stack
+
+1. Alignment and padding
+
+1. Natural word size
+
+1. #pragma pack
+	- Pack1
+	- Pack2
+
+1. Loading and patching DLLs
+
+1. Import Address Table of DLLs
+
+1. Dllmain
+
+1. Loader lock
+
+1. Decoration on DLL names
+
+1. User-defined conversions 
+
+1. RTTI 
+
+1. std::type_info
